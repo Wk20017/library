@@ -2,7 +2,13 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.wk.dao.UserDao">
-    <select id="queryUserEmail" resultType="String">
-        select email from user where username = #{username}
+    <select id="queryPwdByUsername" resultType="String">
+        select password from user where username = #{username}
     </select>
+    <select id="queryPwdByEmail" resultType="String">
+        select password from user where email = #{email}
+    </select>
+    <insert id="addUser">
+        insert into user (email, username, password) values (#{email}, #{username}, #{password})
+    </insert>
 </mapper>

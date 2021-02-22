@@ -2,9 +2,13 @@ package com.wk.service;
 
 import com.wk.dao.ManagerDao;
 import com.wk.model.Msg;
+import com.wk.vo.Book;
 import com.wk.vo.Manager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.Arrays;
+import java.util.List;
 
 @Service
 public class ManagerService {
@@ -23,5 +27,20 @@ public class ManagerService {
         } else {
             return new Msg("400", "密码不能为空！", "");
         }
+    }
+
+    public Msg addBook(Book book) {
+        String bookname = book.getBookname();
+        String author = book.getAuthor();
+        String ISBN = book.getIsbn();
+        String pressname = book.getPressname();
+        //关键字
+        List<String> keywords = Arrays.asList("test1", "test2");
+        //图片
+        String picture = "picture location";
+        //文件
+        String file = "file location";
+        managerDao.addBook(bookname, author, ISBN, pressname, picture, file, keywords.toString());
+        return new Msg("200", "添加成功！", "");
     }
 }

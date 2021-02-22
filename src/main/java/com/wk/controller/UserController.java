@@ -17,13 +17,13 @@ public class UserController {
     @Resource
     private UserService userService;
 
-    @RequestMapping("user/login")
+    @RequestMapping("user/login")//用户登录
     @ResponseBody
     public Msg login(@Valid @RequestBody User user){
         return userService.login(user);
     }
 
-    @RequestMapping("user/signin")
+    @RequestMapping("user/signin")//用户注册
     @ResponseBody
     public Msg signin(@Valid @RequestBody User user){
         return userService.signin(user);

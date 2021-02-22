@@ -1,9 +1,10 @@
 server:
   port: 8080
 spring:
-  thymeleaf:
-    prefix: classpath:/templates/
-    cache: false
+  mvc:
+    static-path-pattern: /**
+  resources:
+    static-locations: /META-INF/resources/,classpath:/resources/,classpath:/static/,classpath:/public/,file:${web.upload-file}
   datasource:
     type: com.mchange.v2.c3p0.ComboPooledDataSource
     username: root
@@ -11,8 +12,14 @@ spring:
     url: jdbc:mysql://www.lzuwk.ltd:3306/library?useUnicode=true&characterEncoding=utf8&serverTimezone=GMT%2B8
     driver-class-name: com.mysql.cj.jdbc.Driver
 
+
+
 mybatis:
   mapper-locations: classpath:/mabatis/mappers/*.xml
   type-aliases-package: com.wk.vo
   configuration:
     map-underscore-to-camel-case: false
+
+
+web:
+  upload-file: ./file/

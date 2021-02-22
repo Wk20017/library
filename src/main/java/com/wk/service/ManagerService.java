@@ -34,12 +34,10 @@ public class ManagerService {
         String author = book.getAuthor();
         String ISBN = book.getIsbn();
         String pressname = book.getPressname();
+        String picture = book.getPicture();
+        String file = book.getFile();
         //关键字
         List<String> keywords = Arrays.asList("test1", "test2");
-        //图片
-        String picture = "picture location";
-        //文件
-        String file = "file location";
         managerDao.addBook(bookname, author, ISBN, pressname, picture, file, keywords.toString());
         return new Msg("200", "添加成功！", "");
     }

@@ -2,7 +2,6 @@ package com.wk.dao;
 
 import org.apache.ibatis.annotations.Param;
 
-import java.util.List;
 
 public interface ManagerDao {
     String queryPwdByManagername(@Param("managername") String managername);

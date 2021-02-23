@@ -19,7 +19,10 @@ import java.io.IOException;
 
 @Controller
 public class ManagerController {
+
     private static final String PATH = "./file";
+
+
     @Resource
     private ManagerService managerService;
 
@@ -55,5 +58,11 @@ public class ManagerController {
 
         System.out.println(book.toString());
         return managerService.addBook(book);
+    }
+
+    @RequestMapping("manager/deleteBook")//删除图书
+    @ResponseBody
+    public Msg deleteBook(@RequestParam("bookId") Integer bookId){
+        return managerService.deleteBook(bookId);
     }
 }

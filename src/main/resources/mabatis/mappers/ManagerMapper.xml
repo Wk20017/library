@@ -9,4 +9,8 @@
     <insert id="addBook" keyProperty="id">
         insert into book (bookname, author, ISBN, pressname, keywords, picture, file) values (#{bookname}, #{author}, #{ISBN}, #{pressname}, #{keywords}, #{picture}, #{file})
     </insert>
+
+    <delete id="deleteBookById">
+        delete from book where id = #{bookId}
+    </delete>
 </mapper>

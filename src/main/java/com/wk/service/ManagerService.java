@@ -38,7 +38,21 @@ public class ManagerService {
         String file = book.getFile();
         //关键字
         List<String> keywords = Arrays.asList("test1", "test2");
-        managerDao.addBook(bookname, author, ISBN, pressname, picture, file, keywords.toString());
-        return new Msg("200", "添加成功！", "");
+        try {
+            managerDao.addBook(bookname, author, ISBN, pressname, picture, file, keywords.toString());
+            return new Msg("200", "添加成功！", "");
+        } catch (Exception e){
+            return new Msg("400", "添加失败！", "");
+        }
+    }
+
+    public Msg deleteBook(Integer bookId){
+        try {
+            managerDao.deleteBookById(bookId);
+            return new Msg("200", "删除成功！", "");
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new Msg("400", "删除失败！", "");
+        }
     }
 }

@@ -21,18 +21,18 @@ public class UserService {
                 String username = user.getUsername();
                 String password = userDao.queryPwdByUsername(username);
                 if (password != null && password.equals(MD5Utils.getPwd(user.getPassword()))) {
-                    return new Msg("200", "right", "");
+                    return new Msg("200", "登录成功！", "");
                 } else {
-                    return new Msg("400", "wrong", "");
+                    return new Msg("400", "登录失败！", "");
                 }
             } else {
                 String email = user.getEmail();
                 System.out.println("email:" + email);
                 String password = userDao.queryPwdByEmail(email);
                 if (password != null && password.equals(MD5Utils.getPwd(user.getPassword()))) {
-                    return new Msg("200", "right", "");
+                    return new Msg("200", "登录成功！", "");
                 } else {
-                    return new Msg("400", "wrong", "");
+                    return new Msg("400", "登录失败！", "");
                 }
             }
         } else {

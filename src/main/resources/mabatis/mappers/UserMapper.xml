@@ -8,7 +8,7 @@
     <select id="queryPwdByEmail" resultType="String">
         select password from user where email = #{email}
     </select>
-    <insert id="addUser" keyProperty="id">
+    <insert id="addUser" keyProperty="userId">
         insert into user (email, username, password) values (#{email}, #{username}, #{password})
     </insert>
 </mapper>

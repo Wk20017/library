@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.wk.dao.SearchDao">
+
+<!--    <resultMap id="BookMap" type="com.wk.vo.Book">-->
+<!--        <result column="id" property="bookId"/>-->
+<!--        <result column="bookname" property="bookname"/>-->
+<!--        <result column="author" property="author"/>-->
+<!--        <result column="ISBN" property="isbn"/>-->
+<!--        <result column="pressname" property="pressname"/>-->
+<!--        <result column="keywords" property="keywords"/>-->
+<!--        <result column="picture" property="picture"/>-->
+<!--        <result column="file" property="file"/>-->
+<!--    </resultMap>-->
+
+    <select id="searchBookWithoutKeywords" resultType="com.wk.vo.Book">
+        select * from book where bookname like concat('%',#{searchWord},'%') or author like concat('%',#{searchWord},'%') or ISBN like concat('%',#{searchWord},'%') or pressname like concat('%',#{searchWord},'%')
+    </select>
+</mapper>

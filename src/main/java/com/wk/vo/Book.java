@@ -12,12 +12,12 @@ import java.util.List;
 @AllArgsConstructor
 @ToString
 public class Book {
-    int bookId;
+    private Integer bookId;
     private String bookname;
     private String author;
     private String isbn;
     private String pressname;
-    private List<String> keywords;
+    private String keywords;
     private String picture;
     private String file;
 }

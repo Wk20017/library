@@ -20,9 +20,9 @@ public class ManagerService {
             String managername = manager.getManagername();
             String password = managerDao.queryPwdByManagername(managername);
             if (password != null && password.equals(manager.getPassword())) {
-                return new Msg("200", "right", "");
+                return new Msg("200", "登录成功！", "");
             } else {
-                return new Msg("400", "wrong", "");
+                return new Msg("400", "登陆失败！", "");
             }
         } else {
             return new Msg("400", "密码不能为空！", "");
@@ -42,6 +42,7 @@ public class ManagerService {
             managerDao.addBook(bookname, author, ISBN, pressname, picture, file, keywords.toString());
             return new Msg("200", "添加成功！", "");
         } catch (Exception e){
+            e.printStackTrace();
             return new Msg("400", "添加失败！", "");
         }
     }

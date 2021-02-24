@@ -6,11 +6,11 @@
         select password from manager where managername = #{managername}
     </select>
 
-    <insert id="addBook" keyProperty="id">
+    <insert id="addBook" keyProperty="bookId">
         insert into book (bookname, author, ISBN, pressname, keywords, picture, file) values (#{bookname}, #{author}, #{ISBN}, #{pressname}, #{keywords}, #{picture}, #{file})
     </insert>
 
     <delete id="deleteBookById">
-        delete from book where id = #{bookId}
+        delete from book where bookId = #{bookId}
     </delete>
 </mapper>

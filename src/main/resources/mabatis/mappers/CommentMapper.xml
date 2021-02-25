@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.wk.dao.CommentDao">
+    <select id="selectComment" resultType="String">
+        select userId from comment where userId = #{userId} and bookId = #{bookId}
+    </select>
+
+    <insert id="insertComment">
+        insert into comment (bookId, userId, comment) values (#{bookId}, #{userId}, #{comment})
+    </insert>
+
+    <update id="updateComment">
+        update comment set comment = #{comment} where bookId = #{bookId} and userId = #{userId}
+    </update>
+
+    <insert id="insertAcquaintance">
+        insert into comment (bookId, userId, acquaintance) values (#{bookId}, #{userId}, #{acquaintance})
+    </insert>
+
+    <update id="updateAcquaintance">
+        update comment set acquaintance = #{acquaintance} where bookId = #{bookId} and userId = #{userId}
+    </update>
+
+    <insert id="insertLastInfo">
+        insert into comment (bookId, userId, lastTime, lastLocation) values (#{bookId}, #{userId}, #{lastTime}, #{lastLocation})
+    </insert>
+
+    <update id="updateLastInfo">
+        update comment set lastTime = #{lastTime}, lastLocation = #{lastLocation} where bookId = #{bookId} and userId = #{userId}
+    </update>
+</mapper>

@@ -17,4 +17,8 @@
     <select id="searchBookWithoutKeywords" resultType="com.wk.vo.Book">
         select * from book where bookname like concat('%',#{searchWord},'%') or author like concat('%',#{searchWord},'%') or ISBN like concat('%',#{searchWord},'%') or pressname like concat('%',#{searchWord},'%')
     </select>
+
+    <select id="searchWithKeywords" resultType="com.wk.vo.Book">
+        select * from book where match(keywords) against (#{searchWord})
+    </select>
 </mapper>

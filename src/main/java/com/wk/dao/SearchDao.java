@@ -7,4 +7,6 @@ import java.util.List;
 
 public interface SearchDao {
     List<Book> searchBookWithoutKeywords(@Param("searchWord") String searchWord);
+
+    List<Book> searchWithKeywords(@Param("searchWord") String searchWord);
 }

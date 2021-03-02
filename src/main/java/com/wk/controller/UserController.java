@@ -1,6 +1,7 @@
 package com.wk.controller;
 
 
+import com.wk.model.LoginIfo;
 import com.wk.model.Msg;
 import com.wk.service.UserService;
 import com.wk.vo.User;
@@ -20,12 +21,10 @@ public class UserController {
     @RequestMapping("user/login")//用户登录
     @ResponseBody
     /*
-    * username="",password=""
-    * 或
-    * email="",password=""
+    * userinfo="",password=""
     * */
-    public Msg login(@Valid @RequestBody User user){
-        return userService.login(user);
+    public Msg login(@RequestBody LoginIfo loginIfo){
+        return userService.login(loginIfo);
     }
 
     @RequestMapping("user/signin")//用户注册

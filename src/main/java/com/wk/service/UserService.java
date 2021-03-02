@@ -2,6 +2,7 @@ package com.wk.service;
 
 
 import com.wk.dao.UserDao;
+import com.wk.model.LoginIfo;
 import com.wk.model.Msg;
 import com.wk.utils.MD5Utils;
 import com.wk.vo.User;
@@ -14,22 +15,20 @@ public class UserService {
     @Autowired(required = false)
     private UserDao userDao;
 
-    public Msg login(User user) {
-        if (user.getPassword() != null){
-            if (user.getEmail() == null) {
-                System.out.println("username");
-                String username = user.getUsername();
+    public Msg login(LoginIfo loginIfo) {
+        if (loginIfo.getPassword() != null){
+            if (null != userDao.queryPwdByUsername(loginIfo.getUserIfo())) {
+                String username = loginIfo.getUserIfo();
                 String password = userDao.queryPwdByUsername(username);
-                if (password != null && password.equals(MD5Utils.getPwd(user.getPassword()))) {
+                if (password != null && password.equals(MD5Utils.getPwd(loginIfo.getPassword()))) {
                     return new Msg("200", "登录成功！", "");
                 } else {
                     return new Msg("400", "登录失败！", "");
                 }
             } else {
-                String email = user.getEmail();
-                System.out.println("email:" + email);
+                String email = loginIfo.getUserIfo();
                 String password = userDao.queryPwdByEmail(email);
-                if (password != null && password.equals(MD5Utils.getPwd(user.getPassword()))) {
+                if (password != null && password.equals(MD5Utils.getPwd(loginIfo.getPassword()))) {
                     return new Msg("200", "登录成功！", "");
                 } else {
                     return new Msg("400", "登录失败！", "");

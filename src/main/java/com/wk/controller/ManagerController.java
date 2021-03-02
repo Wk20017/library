@@ -29,6 +29,9 @@ public class ManagerController {
 
     @RequestMapping("manager/login")//管理员登录
     @ResponseBody
+    /*
+    * managername="", password=""
+    * */
     public Msg login(@RequestBody Manager manager){
         return managerService.login(manager);
     }

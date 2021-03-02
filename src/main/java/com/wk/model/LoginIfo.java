@@ -10,6 +10,6 @@ import lombok.ToString;
 @AllArgsConstructor
 @ToString
 public class LoginIfo {
-    private String userIfo;
+    private String userInfo;
     private String password;
 }

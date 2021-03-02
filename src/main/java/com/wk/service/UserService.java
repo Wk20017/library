@@ -17,8 +17,8 @@ public class UserService {
 
     public Msg login(LoginIfo loginIfo) {
         if (loginIfo.getPassword() != null){
-            if (null != userDao.queryPwdByUsername(loginIfo.getUserIfo())) {
-                String username = loginIfo.getUserIfo();
+            if (null != userDao.queryPwdByUsername(loginIfo.getUserInfo())) {
+                String username = loginIfo.getUserInfo();
                 String password = userDao.queryPwdByUsername(username);
                 if (password != null && password.equals(MD5Utils.getPwd(loginIfo.getPassword()))) {
                     return new Msg("200", "登录成功！", "");
@@ -26,7 +26,7 @@ public class UserService {
                     return new Msg("400", "登录失败！", "");
                 }
             } else {
-                String email = loginIfo.getUserIfo();
+                String email = loginIfo.getUserInfo();
                 String password = userDao.queryPwdByEmail(email);
                 if (password != null && password.equals(MD5Utils.getPwd(loginIfo.getPassword()))) {
                     return new Msg("200", "登录成功！", "");

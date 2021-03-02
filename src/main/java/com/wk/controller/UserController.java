@@ -21,7 +21,7 @@ public class UserController {
     @RequestMapping("user/login")//用户登录
     @ResponseBody
     /*
-    * userinfo="",password=""
+    * userInfo="",password=""
     * */
     public Msg login(@RequestBody LoginIfo loginIfo){
         return userService.login(loginIfo);

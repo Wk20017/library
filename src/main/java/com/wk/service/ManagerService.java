@@ -56,4 +56,13 @@ public class ManagerService {
             return new Msg("400", "删除失败！", "");
         }
     }
+
+    public String getFilePath(Integer bookId){
+        try {
+            return managerDao.getFilePath(bookId);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "null";
+        }
+    }
 }

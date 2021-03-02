@@ -2,6 +2,7 @@ package com.wk.controller;
 
 import com.wk.model.Msg;
 import com.wk.service.ManagerService;
+import com.wk.utils.RemoveDir;
 import com.wk.utils.UploadFileUtil;
 import com.wk.vo.Book;
 import com.wk.vo.Manager;
@@ -63,6 +64,19 @@ public class ManagerController {
     @RequestMapping("manager/deleteBook")//删除图书
     @ResponseBody
     public Msg deleteBook(@RequestParam("bookId") Integer bookId){
+        String file = managerService.getFilePath(bookId);
+        if (!"null".equals(file)){
+            String path = file.split("/")[2];
+            String pic_path = "./file/picture/" + path;
+            String book_path = "./file/book/" + path;
+            System.out.println(pic_path + book_path);
+            try {
+                RemoveDir.remove(new File(pic_path));
+                RemoveDir.remove(new File(book_path));
+            } catch (Exception e){
+                e.printStackTrace();
+            }
+        }
         return managerService.deleteBook(bookId);
     }
 }

@@ -13,4 +13,8 @@
     <delete id="deleteBookById">
         delete from book where bookId = #{bookId}
     </delete>
+
+    <select id="getFilePath" resultType="String">
+        select picture from book where bookId = #{bookId}
+    </select>
 </mapper>

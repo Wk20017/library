@@ -1,3 +1,5 @@
+manager功能暂时不用，图书信息手动添加（FileController）
+
 关键词搜索（全文检索，最小长度为2）配置：
 
 docker的mysql配置文件在：docker exec -it mysql01 /bin/bash中的etc/mysql/my.cnf中

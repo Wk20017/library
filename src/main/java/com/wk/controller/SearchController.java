@@ -19,6 +19,9 @@ public class SearchController {
 
     @RequestMapping("searchBook/searchWithoutKeywords")//不根据关键词搜索
     @ResponseBody
+    /*
+    * searchList=["", ""]
+    * */
     public Msg searchWithoutKeywords(@RequestBody SearchList searchList){
         List<Book> result = searchService.searchWithoutKeywords(searchList.getSearchList());
         if (result.isEmpty()){

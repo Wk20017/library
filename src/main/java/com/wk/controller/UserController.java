@@ -19,12 +19,20 @@ public class UserController {
 
     @RequestMapping("user/login")//用户登录
     @ResponseBody
+    /*
+    * username="",password=""
+    * 或
+    * email="",password=""
+    * */
     public Msg login(@Valid @RequestBody User user){
         return userService.login(user);
     }
 
     @RequestMapping("user/signin")//用户注册
     @ResponseBody
+    /*
+     * email="",username="",password=""
+     * */
     public Msg signin(@Valid @RequestBody User user){
         return userService.signin(user);
     }

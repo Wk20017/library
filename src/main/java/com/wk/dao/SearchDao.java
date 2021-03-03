@@ -19,4 +19,8 @@ public interface SearchDao {
     List<RecommendInfo> getRecommend(@Param("keywordId") int keywordId);
 
     String getKeywordById(@Param("keyword1Id") int keyword1Id);
+
+    Book getBookByBookId(@Param("bookId") int bookId);
+
+    int getBookIdByChapterId(@Param("chapterId") int chapterId);
 }

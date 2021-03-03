@@ -37,4 +37,12 @@
     <select id="getKeywordById" resultType="String">
         select keyword from keywords where keywordId = #{keyword1Id}
     </select>
+
+    <select id="getBookByBookId" resultType="com.wk.vo.Book">
+        select * from book where bookId = #{bookId}
+    </select>
+
+    <select id="getBookIdByChapterId" resultType="Integer">
+        select bookId from chapters where chapterId = #{chapterId}
+    </select>
 </mapper>

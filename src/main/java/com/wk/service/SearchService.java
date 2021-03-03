@@ -80,8 +80,12 @@ public class SearchService {
                         int chapterId = item.getChapterId();//对应章节ID
                         float value = Float.parseFloat(item.getSimValue());//相关度值
                         String text = item.getText();//对应文本
+                        System.out.println("chapterId="+chapterId);
+                        int bookId = searchDao.getBookIdByChapterId(chapterId);
+                        System.out.println("bookId="+bookId);
+                        Book book = searchDao.getBookByBookId(bookId);
                         if (!resultMap.containsKey(chapterId)){
-                            resultMap.put(chapterId, new SearchByKeyModel(value, text));
+                            resultMap.put(chapterId, new SearchByKeyModel(value, text, book));
                         } else {
                             resultMap.get(chapterId).setValue(resultMap.get(chapterId).getValue()+value);
                         }

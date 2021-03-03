@@ -53,10 +53,10 @@ public class SearchController {
             //按照相关度从大到小排序
             List<Map.Entry<ArrayList<String>, Float>> list = new ArrayList<>(keywordsInfo.entrySet());
             list.sort((o1, o2) -> o1.getValue().compareTo(o2.getValue()));
-            for (Map.Entry<ArrayList<String>, Float> s : list)
-            {
-                System.out.println(s.getKey().get(1)+"--"+s.getValue());
-            }
+//            for (Map.Entry<ArrayList<String>, Float> s : list)
+//            {
+//                System.out.println(s.getKey().get(1)+"--"+s.getValue());
+//            }
             return new Msg("200", "查找成功!", list);
         }
     }
@@ -71,10 +71,10 @@ public class SearchController {
             //按照相关度从大到小排序
             List<Map.Entry<Integer, SearchByKeyModel>> list = new ArrayList<>(resultMap.entrySet());
             list.sort((o1, o2) -> Float.compare(o2.getValue().getValue(), o1.getValue().getValue()));
-            for (Map.Entry<Integer, SearchByKeyModel> s : list)
-            {
-                System.out.println(s.getKey()+"--"+s.getValue());
-            }
+//            for (Map.Entry<Integer, SearchByKeyModel> s : list)
+//            {
+//                System.out.println(s.getKey()+"--"+s.getValue());
+//            }
             return new Msg("200", "查找成功!", list);//json格式 章节id：相关度值
         }
     }

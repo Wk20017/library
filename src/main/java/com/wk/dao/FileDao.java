@@ -12,4 +12,6 @@ public interface FileDao {
     public void addSimw2f(@Param("keywordId") int keywordId, @Param("chapterId") int chapterId, @Param("simValue") String simValue);
 
     public void addSimw2w(@Param("keyword1Id") int keywordId, @Param("keyword2Id") int chapterId, @Param("simValue") String simValue);
+
+    public String getKeyword(@Param("searchWord") String searchWord);
 }

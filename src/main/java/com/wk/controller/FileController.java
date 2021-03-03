@@ -1,5 +1,6 @@
 package com.wk.controller;
 
+import com.wk.dao.FileDao;
 import com.wk.service.FileService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -50,7 +51,7 @@ public class FileController {
                 if (i == 0)
                     fileService.addKeywords(item);
                 else {
-                    if (!list.get(i).split(",")[0].equals(list.get(i - 1).split(",")[0])){
+                    if (!list.get(i).split(",")[0].equals(list.get(i - 1).split(",")[0]) && null == fileService.getKeywordId(item)){
                         fileService.addKeywords(item);
                     }
                 }
@@ -79,10 +80,10 @@ public class FileController {
         }
     }
 
-    @RequestMapping("file/addSimw2f")//添加关键词之间信息
+    @RequestMapping("file/addSimw2w")//添加关键词之间信息
     @ResponseBody
     public void addSimw2w(){
-        File file = new File("");
+        File file = new File("D:\\MyPrograms\\Java\\library\\src\\main\\resources\\static\\word2wordData.txt");
         List<String> list = new ArrayList<>();
         try {
             BufferedReader br = new BufferedReader(new FileReader(file));

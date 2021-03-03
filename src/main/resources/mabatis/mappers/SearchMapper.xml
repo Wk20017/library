@@ -21,4 +21,20 @@
     <select id="searchWithKeywords" resultType="com.wk.vo.Book">
         select * from book where match(keywords) against (#{searchWord})
     </select>
+
+    <select id="getKeywordId" resultType="Integer">
+        select keywordId from keywords where keyword = #{searchWord}
+    </select>
+
+    <select id="searchByKeywords" resultType="com.wk.model.SearchByKeyResult">
+        select * from simw2f where keywordId = #{keywordId}
+    </select>
+
+    <select id="getRecommend" resultType="com.wk.model.RecommendInfo">
+        select * from simw2w where keyword1Id = #{keywordId}
+    </select>
+
+    <select id="getKeywordById" resultType="String">
+        select keyword from keywords where keywordId = #{keyword1Id}
+    </select>
 </mapper>

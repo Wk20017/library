@@ -21,4 +21,8 @@
     <insert id="addSimw2w">
         insert into simw2w (keyword1Id, keyword2Id, simValue) VALUES (#{keyword1Id}, #{keyword2Id}, #{simValue})
     </insert>
+
+    <select id="getKeyword" resultType="String">
+        select keyword from keywords where keyword = #{searchWord}
+    </select>
 </mapper>

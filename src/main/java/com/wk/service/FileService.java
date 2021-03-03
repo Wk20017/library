@@ -56,4 +56,7 @@ public class FileService {
         }
     }
 
+    public String getKeywordId(String searchWord){
+        return fileDao.getKeyword(searchWord);
+    }
 }

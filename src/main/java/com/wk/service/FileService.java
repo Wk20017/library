@@ -56,6 +56,22 @@ public class FileService {
         }
     }
 
+    public void addText(String info){
+        int keywordId = Integer.parseInt(info.split(",")[0]);
+        int chapterId = Integer.parseInt(info.split(",")[2]);
+        String text = info.split(",")[5];
+        try {
+            System.out.println(keywordId);
+            if (keywordId == 0){
+                fileDao.addText(999999, chapterId, text);
+            } else {
+                fileDao.addText(keywordId, chapterId, text);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     public String getKeywordId(String searchWord){
         return fileDao.getKeyword(searchWord);
     }

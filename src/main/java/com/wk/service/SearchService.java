@@ -2,6 +2,7 @@ package com.wk.service;
 
 import com.wk.dao.SearchDao;
 import com.wk.model.RecommendInfo;
+import com.wk.model.SearchByKeyModel;
 import com.wk.model.SearchByKeyResult;
 import com.wk.vo.Book;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -66,8 +67,8 @@ public class SearchService {
         return result;
     }
 
-    public HashMap<Integer, Float> searchByKeywords(List<String> searchList){
-        HashMap<Integer, Float> resultMap = new HashMap<>();
+    public HashMap<Integer, SearchByKeyModel> searchByKeywords(List<String> searchList){
+        HashMap<Integer, SearchByKeyModel> resultMap = new HashMap<>();
         try {
             for (String searchWord : searchList) {
                 System.out.println("查询词语: " + searchWord);
@@ -76,12 +77,13 @@ public class SearchService {
                 System.out.println(results);
                 if (null != results) {
                     for (SearchByKeyResult item : results) {
-                        int chapterId = item.getChapterId();
-                        float value = Float.parseFloat(item.getSimValue());
+                        int chapterId = item.getChapterId();//对应章节ID
+                        float value = Float.parseFloat(item.getSimValue());//相关度值
+                        String text = item.getText();//对应文本
                         if (!resultMap.containsKey(chapterId)){
-                            resultMap.put(chapterId, value);
+                            resultMap.put(chapterId, new SearchByKeyModel(value, text));
                         } else {
-                            resultMap.put(chapterId, resultMap.get(chapterId)+value);
+                            resultMap.get(chapterId).setValue(resultMap.get(chapterId).getValue()+value);
                         }
                     }
                 }

@@ -9,10 +9,7 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class SearchByKeyResult {
-    private int simw2fId;
-    private int keywordId;
-    private int chapterId;
-    private String simValue;
+public class SearchByKeyModel {
+    private float value;
     private String text;
 }

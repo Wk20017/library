@@ -25,4 +25,8 @@
     <select id="getKeyword" resultType="String">
         select keyword from keywords where keyword = #{searchWord}
     </select>
+
+    <update id="addText">
+        update simw2f set text = #{text} where keywordId = #{keywordId} and chapterId = #{chapterId}
+    </update>
 </mapper>

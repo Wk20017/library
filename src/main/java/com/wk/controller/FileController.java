@@ -98,4 +98,23 @@ public class FileController {
             e.printStackTrace();
         }
     }
+
+    @RequestMapping("file/addText")//添加关键词对应文本
+    @ResponseBody
+    public void addText(){
+        File file = new File("D:\\MyPrograms\\Java\\library\\src\\main\\resources\\static\\word2DocText.txt");
+        List<String> list = new ArrayList<>();
+        try {
+            BufferedReader br = new BufferedReader(new FileReader(file));
+            String s = "";
+            while((s = br.readLine())!=null){//使用readLine方法，一次读一行
+                list.add(s);
+            }
+            for (String item : list) {
+                fileService.addText(item);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }

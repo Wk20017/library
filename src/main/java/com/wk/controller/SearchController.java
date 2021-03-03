@@ -1,6 +1,7 @@
 package com.wk.controller;
 
 import com.wk.model.Msg;
+import com.wk.model.SearchByKeyModel;
 import com.wk.model.SearchList;
 import com.wk.service.SearchService;
 import com.wk.vo.Book;
@@ -63,18 +64,18 @@ public class SearchController {
     @RequestMapping("searchBook/searchByKeywords")//关键词检索，按相关度大小排序
     @ResponseBody
     public Msg searchByKeywords(@RequestBody SearchList searchList){
-        Map<Integer, Float> resultMap = searchService.searchByKeywords(searchList.getSearchList());
+        Map<Integer, SearchByKeyModel> resultMap = searchService.searchByKeywords(searchList.getSearchList());
         if (resultMap.isEmpty()){
             return new Msg("400", "没有查到!", "");
         } else {
             //按照相关度从大到小排序
-            List<Map.Entry<Integer, Float>> list = new ArrayList<>(resultMap.entrySet());
-            list.sort((o1, o2) -> o2.getValue().compareTo(o1.getValue()));
-            for (Map.Entry<Integer, Float> s : list)
+            List<Map.Entry<Integer, SearchByKeyModel>> list = new ArrayList<>(resultMap.entrySet());
+            list.sort((o1, o2) -> Float.compare(o2.getValue().getValue(), o1.getValue().getValue()));
+            for (Map.Entry<Integer, SearchByKeyModel> s : list)
             {
                 System.out.println(s.getKey()+"--"+s.getValue());
             }
-            return new Msg("200", "查找成功!", list);
+            return new Msg("200", "查找成功!", list);//json格式 章节id：相关度值
         }
     }
 }

@@ -5,4 +5,12 @@
     <select id="getAllChapters" resultType="com.wk.vo.Chapters">
         select * from chapters where bookId = #{bookId}
     </select>
+
+    <select id="getLastLocation" resultType="Integer">
+        select lastLocation from comment where bookId = #{bookId} and userId = #{userId}
+    </select>
+
+    <select id="getChapterByChapterId" resultType="com.wk.vo.Chapters">
+        select * from chapters where chapterId = #{chapterId}
+    </select>
 </mapper>

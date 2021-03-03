@@ -28,4 +28,16 @@ public class ReadController {
         }
 
     }
+
+    @RequestMapping("read/currentChapter")//当前章节或上次章节
+    @ResponseBody
+    public Msg getCurrentChapters(@RequestParam("bookId") int bookId, @RequestParam("userId") int userId){
+        try {
+            Chapters currentChapter = readService.getCurrentChapter(bookId, userId);
+            return new Msg("200", "查询成功", currentChapter);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new Msg("400", "查询失败", "");
+        }
+    }
 }

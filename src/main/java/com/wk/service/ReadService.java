@@ -23,4 +23,20 @@ public class ReadService {
 
         return result;
     }
+
+    public Chapters getCurrentChapter(int bookId, int userId){
+        Chapters result = new Chapters();
+        try {
+            if (null != readDao.getLastLocation(bookId, userId)){
+                //没有记录直接从第一章开始
+                result = readDao.getChapterByChapterId(0);
+            } else {
+                result = readDao.getChapterByChapterId(readDao.getLastLocation(bookId, userId));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return result;
+    }
 }

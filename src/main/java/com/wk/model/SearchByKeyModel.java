@@ -10,6 +10,7 @@ import lombok.ToString;
 @AllArgsConstructor
 @ToString
 public class SearchByKeyModel {
+    //关键词搜索用到的数据结构
     private float value;
     private String text;
 }

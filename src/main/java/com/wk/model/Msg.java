@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Msg {
+    //交互信息
     private String code;
     private String msg;
     private Object result;

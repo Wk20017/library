@@ -10,6 +10,7 @@ import lombok.ToString;
 @AllArgsConstructor
 @ToString
 public class SearchByKeyResult {
+    //通过关键词搜索结果
     private int simw2fId;
     private int keywordId;
     private int chapterId;

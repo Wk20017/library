@@ -13,5 +13,6 @@ import java.util.List;
 @AllArgsConstructor
 @ToString
 public class SearchList {
+    //搜索词组
     private List<String> searchList;
 }

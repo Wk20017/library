@@ -10,6 +10,7 @@ import lombok.ToString;
 @AllArgsConstructor
 @ToString
 public class RecommendInfo {
+    //推荐词语信息
     private int simw2wId;
     private int keyword1Id;
     private int keyword2Id;

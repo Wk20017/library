@@ -22,17 +22,23 @@ public class UserService {
                 String password = userDao.queryPwdByUsername(username);
                 if (password != null && password.equals(MD5Utils.getPwd(loginIfo.getPassword()))) {
                     return new Msg("200", "登录成功！", "");
+                } else if(null != username){
+                    return new Msg("400", "密码错误！", "");
                 } else {
-                    return new Msg("400", "登录失败！", "");
+                    return new Msg("400", "用户不存在！", "");
                 }
-            } else {
+            } else if (null != userDao.queryPwdByEmail(loginIfo.getUserInfo())){
                 String email = loginIfo.getUserInfo();
                 String password = userDao.queryPwdByEmail(email);
                 if (password != null && password.equals(MD5Utils.getPwd(loginIfo.getPassword()))) {
                     return new Msg("200", "登录成功！", "");
+                } else if(null != email){
+                    return new Msg("400", "密码错误！", "");
                 } else {
-                    return new Msg("400", "登录失败！", "");
+                    return new Msg("400", "用户不存在！", "");
                 }
+            } else {
+                return new Msg("400", "用户不存在！", "");
             }
         } else {
             return new Msg("400", "密码不能为空！", "");
@@ -46,13 +52,19 @@ public class UserService {
 
         String q_email = userDao.queryPwdByEmail(email);
         String q_username = userDao.queryPwdByUsername(username);
-        if (q_email == null && q_username == null && email != null && username != null && password != null){
-            //加密
-            password = MD5Utils.getPwd(user.getPassword());
-            userDao.addUser(email, username, password);
-            return new Msg("200", "注册成功！", "");
-        } else {
-            return new Msg("400", "用户已存在！", "");
+        try {
+            if (q_email == null && q_username == null && email != null && username != null && password != null){
+                //加密
+                password = MD5Utils.getPwd(user.getPassword());
+                userDao.addUser(email, username, password);
+                return new Msg("200", "注册成功！", "");
+            } else {
+                return new Msg("400", "用户已存在！", "");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new Msg("400", "注册失败！", "");
         }
+
     }
 }

@@ -47,17 +47,18 @@ public class SearchController {
     @ResponseBody
     public Msg keywordRecommend(@RequestBody SearchList searchList){
         Map<ArrayList<String>, Float> keywordsInfo = searchService.keywordRecommend(searchList.getSearchList());
+        List<String> result = new ArrayList<>();
         if (keywordsInfo.isEmpty()){
             return new Msg("400", "没有查到!", "");
         } else {
             //按照相关度从大到小排序
             List<Map.Entry<ArrayList<String>, Float>> list = new ArrayList<>(keywordsInfo.entrySet());
             list.sort((o1, o2) -> o1.getValue().compareTo(o2.getValue()));
-//            for (Map.Entry<ArrayList<String>, Float> s : list)
-//            {
-//                System.out.println(s.getKey().get(1)+"--"+s.getValue());
-//            }
-            return new Msg("200", "查找成功!", list);
+            for (Map.Entry<ArrayList<String>, Float> s : list)
+            {
+                result.add(s.getKey().get(1));
+            }
+            return new Msg("200", "查找成功!", result);
         }
     }
 

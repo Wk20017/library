@@ -12,7 +12,7 @@ public interface SearchDao {
 
     List<Book> searchWithKeywords(@Param("searchWord") String searchWord);
 
-    int getKeywordId(@Param("searchWord") String searchWord);
+    List<Integer> getKeywordId(@Param("searchWord") String searchWord);
 
     List<SearchByKeyResult> searchByKeywords(@Param("keywordId") int keywordId);
 

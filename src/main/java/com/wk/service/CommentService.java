@@ -54,7 +54,7 @@ public class CommentService {
         }
     }
 
-    public Msg insertLastInfo(int bookId, int userId, String lastTime, String lastLocation){
+    public Msg insertLastInfo(int bookId, int userId, String lastTime, int lastLocation){
         try {
             commentDao.insertLastInfo(bookId, userId, lastTime, lastLocation);
             return new Msg("200", "日志添加成功！", "");
@@ -64,7 +64,7 @@ public class CommentService {
         }
     }
 
-    public Msg updateLastInfo(int bookId, int userId, String lastTime, String lastLocation){
+    public Msg updateLastInfo(int bookId, int userId, String lastTime, int lastLocation){
         try {
             commentDao.updateLastInfo(bookId, userId, lastTime, lastLocation);
             return new Msg("200", "日志更新成功！", "");

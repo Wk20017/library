@@ -13,7 +13,7 @@ public interface CommentDao {
 
     void updateAcquaintance(@Param("bookId") int bookId, @Param("userId") int userId, @Param("acquaintance") String acquaintance);
 
-    void insertLastInfo(@Param("bookId") int bookId, @Param("userId") int userId, @Param("lastTime") String lastTime, @Param("lastLocation") String lastLocation);
+    void insertLastInfo(@Param("bookId") int bookId, @Param("userId") int userId, @Param("lastTime") String lastTime, @Param("lastLocation") int lastLocation);
 
-    void updateLastInfo(@Param("bookId") int bookId, @Param("userId") int userId, @Param("lastTime") String lastTime, @Param("lastLocation") String lastLocation);
+    void updateLastInfo(@Param("bookId") int bookId, @Param("userId") int userId, @Param("lastTime") String lastTime, @Param("lastLocation") int lastLocation);
 }

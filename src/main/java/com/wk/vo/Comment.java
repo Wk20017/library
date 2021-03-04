@@ -15,5 +15,5 @@ public class Comment {
     private String comment;
     private String acquaintance;
     private String lastTime;
-    private String lastLocation;
+    private int lastLocation;
 }

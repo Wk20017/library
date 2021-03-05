@@ -29,7 +29,7 @@ public class ReadController {
 
     }
 
-    @RequestMapping("read/currentChapter")//当前章节或上次章节
+    @RequestMapping("read/currentChapter")//历史记录，当前章节或上次章节
     @ResponseBody
     public Msg getCurrentChapters(@RequestParam("bookId") int bookId, @RequestParam("userId") int userId){
         try {
@@ -38,6 +38,18 @@ public class ReadController {
         } catch (Exception e) {
             e.printStackTrace();
             return new Msg("400", "查询失败", "");
+        }
+    }
+
+    @RequestMapping("read/getChapterByChapterId")//获取对应图书章节
+    @ResponseBody
+    public Msg getChapterByChapterId(@RequestParam("chapterId") int chapterId){
+        try {
+            Chapters chapter = readService.getChapterByChapterId(chapterId);
+            return new Msg("200", "成功返回章节信息！", chapter);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new Msg("400", "没有该章节！", "");
         }
     }
 }

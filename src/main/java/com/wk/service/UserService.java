@@ -16,26 +16,34 @@ public class UserService {
     private UserDao userDao;
 
     public Msg login(LoginIfo loginIfo) {
-        if (loginIfo.getPassword() != null){
-            if (null != userDao.queryPwdByUsername(loginIfo.getUserInfo())) {
-                String username = loginIfo.getUserInfo();
-                String password = userDao.queryPwdByUsername(username);
-                if (password != null && password.equals(MD5Utils.getPwd(loginIfo.getPassword()))) {
-                    return new Msg("200", "登录成功！", "");
-                } else if(null != username){
-                    return new Msg("400", "密码错误！", "");
+        String pwd = loginIfo.getPassword();
+        if (pwd != null) {
+            String userInfo = loginIfo.getUserInfo();
+            if (null != userInfo) {
+                if (userInfo.contains("@")) {
+                    System.out.println("email");
+                    String pwdByEmail = userDao.queryPwdByEmail(userInfo);
+                    if (null != pwdByEmail) {
+                        if (pwdByEmail.equals(MD5Utils.getPwd(pwd))) {
+                            return new Msg("200", "登录成功！", "");
+                        } else {
+                            return new Msg("400", "密码错误！", "");
+                        }
+                    } else {
+                        return new Msg("400", "用户不存在！", "");
+                    }
                 } else {
-                    return new Msg("400", "用户不存在！", "");
-                }
-            } else if (null != userDao.queryPwdByEmail(loginIfo.getUserInfo())){
-                String email = loginIfo.getUserInfo();
-                String password = userDao.queryPwdByEmail(email);
-                if (password != null && password.equals(MD5Utils.getPwd(loginIfo.getPassword()))) {
-                    return new Msg("200", "登录成功！", "");
-                } else if(null != email){
-                    return new Msg("400", "密码错误！", "");
-                } else {
-                    return new Msg("400", "用户不存在！", "");
+                    System.out.println("name");
+                    String pwdByName = userDao.queryPwdByUsername(userInfo);
+                    if (null != pwdByName) {
+                        if (pwdByName.equals(MD5Utils.getPwd(pwd))) {
+                            return new Msg("200", "登录成功！", "");
+                        } else {
+                            return new Msg("400", "密码错误！", "");
+                        }
+                    } else {
+                        return new Msg("400", "用户不存在！", "");
+                    }
                 }
             } else {
                 return new Msg("400", "用户不存在！", "");
@@ -53,11 +61,15 @@ public class UserService {
         String q_email = userDao.queryPwdByEmail(email);
         String q_username = userDao.queryPwdByUsername(username);
         try {
-            if (q_email == null && q_username == null && email != null && username != null && password != null){
-                //加密
-                password = MD5Utils.getPwd(user.getPassword());
-                userDao.addUser(email, username, password);
-                return new Msg("200", "注册成功！", "");
+            if (q_email == null && q_username == null && email != null && username != null && password != null) {
+                if (!username.contains("@")) {
+                    //加密
+                    password = MD5Utils.getPwd(user.getPassword());
+                    userDao.addUser(email, username, password);
+                    return new Msg("200", "注册成功！", "");
+                } else {
+                    return new Msg("400", "用户名不能含有@！", "");
+                }
             } else {
                 return new Msg("400", "用户已存在！", "");
             }

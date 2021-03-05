@@ -10,5 +10,5 @@ public interface ReadDao {
 
     Integer getLastLocation(@Param("bookId") int bookId, @Param("userId") int userId);
 
-    Chapters getChapterByChapterId(@Param("chapterId") int chapterId);
+    Chapters getChapterByChapterId(@Param("chapterId") Integer chapterId);
 }
